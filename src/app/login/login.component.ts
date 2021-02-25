@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
   providers: [LoginRecordsService]
 })
 export class LoginComponent implements OnInit {
-  //dservice: any;
   loginValid: boolean = false;
-  //password: any;
 
   loginVerification(login: any) {
     this.loginValid = this.service.validateLoginCredential(
@@ -25,9 +23,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  constructor(private service: LoginRecordsService, private route: Router) {
-    //this.dservice = service;
-  }
+  constructor(private service: LoginRecordsService, private route: Router) {}
 
   ngOnInit(): void {}
 }
