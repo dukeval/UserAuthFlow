@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="content">
+    <form #register="ngForm" (ngSubmit)="registerUser(register)">
+      <div class="header">
+        <h1>Sign Up</h1>
+        <h3>Please fill in this form to create an account</h3>
+
+        <p class="error" *ngIf="!valid">All Fields are required!</p>
+      </div>
+      <div class="signUpLayout">
+        <div>
+          <div class="firstName left">
+            <input
+              type="text"
+              name="firstname"
+              placeholder="First Name"
+              ngModel
+            />
+            <p class="error" *ngIf="!firstnameValid">First Name is required!</p>
+          </div>
+
+          <div class="lastName right">
+            <input
+              type="text"
+              name="lastname"
+              placeholder="Last Name"
+              ngModel
+            />
+            <p class="error" *ngIf="!lastnameValid">Last Name is required!</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="singUpEmail">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              ngModel
+            />
+            <p class="error" *ngIf="!emailValid">Email is required!</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="singUpPassword">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              ngModel
+            />
+            <p class="error" *ngIf="!passwordValid">Password required!</p>
+            <p class="error" *ngIf="!passwordMatch">Passwords do not match</p>
+          </div>
+
+          <div class="singUpPassword">
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              ngModel
+            />
+            <p class="error" *ngIf="!passwordValid">Password required!</p>
+            <p class="error" *ngIf="!passwordMatch">Passwords do not match</p>
+          </div>
+        </div>
+      </div>
+      <div class="signUpLayout">
+        <div>
+          <input
+            type="checkbox"
+            name="termsAndCondition"
+            id="termsAndCondition"
+            ngModel
+          />
+          <label for="signUpTermsAndCondition">
+            &nbsp;I accept the Terms of Use & Privacy Policy</label
+          >
+          <p class="error" *ngIf="!termsAndCondition">
+            You must agree to the Terms of Use & Privacy Policy
+          </p>
+        </div>
+        <div class="signUpButton">
+          <button class="btn btn-primary">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

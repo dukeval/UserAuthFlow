@@ -1,0 +1,86 @@
+.singUpPassword input[type="password"] {
+  height: 30px;
+  width: 100%;
+  margin: 10px 0;
+}
+.firstName {
+  margin: 20px 22px 20px 0;
+}
+
+.lastName {
+  margin: 20px 0 20px 22px;
+}
+
+.left {
+  display: inline-block;
+  width: 43%;
+}
+
+.right {
+  display: inline-block;
+  width: 43%;
+}
+
+.firstName input[type="text"] {
+  height: 30px;
+  width: 100%;
+}
+
+.lastName input[type="text"] {
+  height: 30px;
+  width: 100%;
+}
+.singUpEmail input[type="email"] {
+  height: 30px;
+  width: 100%;
+  margin: 10px 0;
+}
+.signUpButton {
+  margin: 20px 0;
+}
+
+.button {
+  height: 40px;
+  width: 150px;
+  background: rgb(67, 162, 218);
+  color: white;
+}
+.container {
+  background: rgb(67, 162, 218);
+  margin: 0 auto;
+  padding: 40px 20px;
+  width: 50%;
+}
+
+.content {
+  width: 95%;
+  background: white;
+  color: grey;
+  margin: 0 auto;
+}
+
+.content h1,
+h3 {
+  line-height: 1;
+  margin: 0 0 10px 0;
+}
+
+.header {
+  padding: 10px 60px;
+  border-bottom: 1px solid black;
+}
+
+.signUpLayout {
+  margin: 10px;
+  padding: 10px 60px;
+  width: 72%;
+}
+
+h1 {
+  color: black;
+}
+
+.error {
+  color: red;
+  font-weight: 900;
+}
