@@ -14,6 +14,7 @@
               type="text"
               name="firstname"
               placeholder="First Name"
+              required="true"
               ngModel
             />
             <p class="error" *ngIf="!firstnameValid">First Name is required!</p>
@@ -24,6 +25,7 @@
               type="text"
               name="lastname"
               placeholder="Last Name"
+              required="true"
               ngModel
             />
             <p class="error" *ngIf="!lastnameValid">Last Name is required!</p>
@@ -37,6 +39,7 @@
               name="email"
               id="email"
               placeholder="Email"
+              required="true"
               ngModel
             />
             <p class="error" *ngIf="!emailValid">Email is required!</p>
@@ -50,6 +53,7 @@
               name="password"
               id="password"
               placeholder="Password"
+              required="true"
               ngModel
             />
             <p class="error" *ngIf="!passwordValid">Password required!</p>
@@ -62,6 +66,7 @@
               name="confirmPassword"
               id="confirmPassword"
               placeholder="Confirm Password"
+              required="true"
               ngModel
             />
             <p class="error" *ngIf="!passwordValid">Password required!</p>
@@ -75,6 +80,7 @@
             type="checkbox"
             name="termsAndCondition"
             id="termsAndCondition"
+            required="true"
             ngModel
           />
           <label for="signUpTermsAndCondition">

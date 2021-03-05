@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginRecordsService } from '../login-records.service';
 import { Router } from '@angular/router';
+//import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  providers: [LoginRecordsService]
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
   valid: boolean = true;
@@ -17,9 +17,17 @@ export class RegisterComponent implements OnInit {
   firstnameValid: boolean = true;
   lastnameValid: boolean = true;
 
+  //formGroup: FormGroup | null = null;
+
   constructor(private service: LoginRecordsService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.formGroup = new FormGroup({
+    //   email: new FormControl('', [Validators.required]),
+    //   password: new FormControl('', [Validators.required]),
+    //   confirmPassword: new FormControl('', [Validators.required])
+    // });
+  }
 
   registerUser(register: any) {
     this.valid = true;
@@ -53,5 +61,11 @@ export class RegisterComponent implements OnInit {
 
       if (this.valid) this.router.navigate(['login']);
     }
+    // debugger;
+    // if (this.formGroup && this.formGroup.valid) {
+    //   this.valid = this.service.addNewUser(register.form.controls);
+
+    //   if (this.valid) this.router.navigate(['login']);
+    // }
   }
 }

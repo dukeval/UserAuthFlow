@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginRecordsService } from '../login-records.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  loggedInUser: string | null = '';
+  loggedInID: string | null = '';
 
-  constructor() {}
+  constructor(private service: LoginRecordsService) {}
 
   ngOnInit(): void {
-    this.loggedInUser = sessionStorage.getItem('userName');
+    this.loggedInID = this.service.loggedInUser.email; //sessionStorage.getItem('userName');
   }
 }

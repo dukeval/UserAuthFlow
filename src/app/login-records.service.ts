@@ -1,30 +1,29 @@
 import { Injectable } from '@angular/core';
-import { element } from 'protractor';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LoginRecordsService {
-  private users: any[] = [
-    { email: 'Test', password: 'Test12' },
-    { email: 'frosty', password: 'SnowMan' },
-    { email: 'captain', password: 'aMerica' }
+  users: any[] = [
+    { email: 'Test@test.com', password: 'Test12' },
+    { email: 'frosty@snow.com', password: 'SnowMan' },
+    { email: 'captain@shield.com', password: 'aMerica' }
   ];
 
-  loggedInUser: any[] = [];
+  loggedInUser: any = {};
 
   constructor() {}
 
   getUsers(): any[] {
-    this.users = JSON.parse(sessionStorage.getItem('users')!);
-
     return this.users;
   }
+
   addNewUser(newUserProfile: any): boolean {
     if (this.registeringUserValid(newUserProfile)) {
       this.users.push({
         email: newUserProfile.email.value,
         password: newUserProfile.password.value
       });
-      sessionStorage.setItem('users', JSON.stringify(this.users));
       return true;
     }
 
@@ -41,8 +40,9 @@ export class LoginRecordsService {
         username.toLowerCase() == element.email.toLowerCase() &&
         password == element.password
       ) {
+        
         valid = true;
-        this.loggedInUser.push(element);
+        this.loggedInUser = element;
       }
     });
 

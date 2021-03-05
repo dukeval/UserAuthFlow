@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [LoginRecordsService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginValid: boolean = false;
@@ -18,7 +17,6 @@ export class LoginComponent implements OnInit {
     );
 
     if (this.loginValid) {
-      sessionStorage.setItem('userName', login.form.controls.userName.value);
       this.route.navigate(['dashboard']);
     }
   }
