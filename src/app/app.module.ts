@@ -9,7 +9,8 @@ import {
   FormControl,
   FormGroup,
   Validators,
-  FormsModule
+  FormsModule,
+  ReactiveFormsModule
 } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
@@ -21,7 +22,7 @@ import { RegisterComponent } from './register/register.component';
     DashboardComponent,
     RegisterComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [LoginRecordsService],
   bootstrap: [AppComponent]
 })

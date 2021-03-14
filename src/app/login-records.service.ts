@@ -21,8 +21,8 @@ export class LoginRecordsService {
   addNewUser(newUserProfile: any): boolean {
     if (this.registeringUserValid(newUserProfile)) {
       this.users.push({
-        email: newUserProfile.email.value,
-        password: newUserProfile.password.value
+        email: newUserProfile.controls.email.value,
+        password: newUserProfile.controls.password.value
       });
       return true;
     }
@@ -33,14 +33,11 @@ export class LoginRecordsService {
   validateLoginCredential(username: string, password: string): boolean {
     let valid: boolean = false;
 
-    this.getUsers();
-
     this.users.forEach(element => {
       if (
         username.toLowerCase() == element.email.toLowerCase() &&
         password == element.password
       ) {
-        
         valid = true;
         this.loggedInUser = element;
       }
@@ -52,11 +49,17 @@ export class LoginRecordsService {
   registeringUserValid(userProfile: any): boolean {
     let valid: boolean = true;
 
-    if (userProfile.email.value == '' || userProfile.email.value == undefined)
+    if (
+      userProfile.controls.email.value == '' ||
+      userProfile.controls.email.value == undefined
+    )
       valid = false;
-    else if (userProfile.password.value != userProfile.confirmPassword.value)
+    else if (
+      userProfile.controls.password.value !=
+      userProfile.controls.confirmPassword.value
+    )
       valid = false;
-    else if (!userProfile.termsAndCondition.value) valid = false;
+    else if (!userProfile.controls.termsAndCondition.value) valid = false;
 
     return valid;
   }

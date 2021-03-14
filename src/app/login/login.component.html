@@ -4,9 +4,16 @@
       <h1>Login</h1>
     </div>
 
-    <form #login="ngForm" (ngSubmit)="loginVerification(login)">
-      <!--  -->
-      <div class="loginValidation" *ngIf="login.submitted && !loginValid">
+    <!-- <form #login="ngForm" (ngSubmit)="loginVerification(login)"> -->
+    <form [formGroup]="formGroup" (ngSubmit)="loginVerification()">
+      <div
+        class="loginValidation"
+        *ngIf="
+          formGroup.controls.username.touched &&
+          formGroup.controls.password.touched &&
+          !loginValid
+        "
+      >
         <p>Invalid Username and Password.</p>
       </div>
       <div class="form-group">
@@ -16,6 +23,7 @@
           placeholder="Username"
           class="form-control"
           required="true"
+          formControlName="username"
           ngModel
         />
         <pre></pre>
@@ -27,6 +35,7 @@
           placeholder="Password"
           class="form-control"
           required="true"
+          formControlName="password"
           ngModel
         />
         <pre></pre>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="content">
-    <form #register="ngForm" (ngSubmit)="registerUser(register)">
+    <form [formGroup]="formGroup" (ngSubmit)="registerUser()">
       <div class="header">
         <h1>Sign Up</h1>
         <h3>Please fill in this form to create an account</h3>
@@ -15,6 +15,7 @@
               name="firstname"
               placeholder="First Name"
               required="true"
+              formControlName="first"
               ngModel
             />
             <p class="error" *ngIf="!firstnameValid">First Name is required!</p>
@@ -26,6 +27,7 @@
               name="lastname"
               placeholder="Last Name"
               required="true"
+              formControlName="last"
               ngModel
             />
             <p class="error" *ngIf="!lastnameValid">Last Name is required!</p>
@@ -40,6 +42,7 @@
               id="email"
               placeholder="Email"
               required="true"
+              formControlName="email"
               ngModel
             />
             <p class="error" *ngIf="!emailValid">Email is required!</p>
@@ -53,6 +56,7 @@
               name="password"
               id="password"
               placeholder="Password"
+              formControlName="password"
               required="true"
               ngModel
             />
@@ -66,6 +70,7 @@
               name="confirmPassword"
               id="confirmPassword"
               placeholder="Confirm Password"
+              formControlName="confirmPassword"
               required="true"
               ngModel
             />
@@ -80,6 +85,7 @@
             type="checkbox"
             name="termsAndCondition"
             id="termsAndCondition"
+            formControlName="termsAndCondition"
             required="true"
             ngModel
           />
