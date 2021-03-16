@@ -114,8 +114,6 @@ describe('DashboardComponent', () => {
     );
     fixture.detectChanges();
     fixture.componentInstance.ngOnInit();
-    console.log(`Is Valid: ${valid}`);
-    console.log(`UIDs: ${logInUser.password}`);
 
     expect(logInUser.email).toEqual('frosty@snow.com');
   });

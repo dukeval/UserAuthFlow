@@ -30,6 +30,8 @@ describe('LoginRecordsService', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
   beforeEach(async () => {
+    service = new LoginRecordsService();
+
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
       declarations: [RegisterComponent, LoginComponent],
@@ -45,101 +47,58 @@ describe('LoginRecordsService', () => {
 
     loginFixture = TestBed.createComponent(LoginComponent);
     loginComponent = loginFixture.componentInstance;
-
-    //   TestBed.configureTestingModule({
-    //     imports: [ReactiveFormsModule, FormsModule],
-    //     declarations: [RegisterComponent, LoginComponent],
-    //     // providers: [
-    //     //   LoginRecordsService,
-    //     //   Router,
-    //     //   RegisterComponent,
-    //     //   LoginComponent
-    //     // ]
-    //     providers: [
-    //       { provide: LoginRecordsService, useValue: loginSpy },
-    //       { provide: RegisterComponent, userValue: registerSpy },
-    //       { provide: Router, useValue: routerSpy }
-    //     ]
-    //   }).compileComponents();
-
-    //   registerFixture = TestBed.createComponent(RegisterComponent);
-    //   registerComponent = registerFixture.componentInstance;
-    //   registerComponent.ngOnInit();
-    //   registerFixture.detectChanges();
-
-    //   loginFixture = TestBed.createComponent(LoginComponent);
-    //   loginComponent = loginFixture.componentInstance;
-    //   loginFixture.detectChanges();
   });
-
-  // beforeEach(() => {
-  //   TestBed.configureTestingModule({
-  //     imports: [ReactiveFormsModule, FormsModule],
-  //     declarations: [RegisterComponent, LoginComponent],
-  //     // providers: [
-  //     //   LoginRecordsService,
-  //     //   Router,
-  //     //   RegisterComponent,
-  //     //   LoginComponent
-  //     // ]
-  //     providers: [
-  //       { provide: LoginRecordsService, useValue: loginSpy },
-  //       { provide: RegisterComponent, userValue: registerSpy },
-  //       { provide: Router, useValue: routerSpy }
-  //     ]
-  //   }).compileComponents();
-
-  //   registerFixture = TestBed.createComponent(RegisterComponent);
-  //   registerComponent = registerFixture.componentInstance;
-  //   registerComponent.ngOnInit();
-  //   registerFixture.detectChanges();
-
-  //   loginFixture = TestBed.createComponent(LoginComponent);
-  //   loginComponent = loginFixture.componentInstance;
-  //   loginFixture.detectChanges();
-
-  //   service = TestBed.inject(LoginRecordsService);
-  //   //service = registerFixture.debugElement.injector.get(LoginRecordsService);
-
-  //   // //TestBed.configureTestingModule({});
-  //   // //fixture = TestBed.createComponent(RegisterComponent);
-  //   // // component = fixture.componentInstance;
-  //   // // component.ngOnInit();
-  //   // fixture = TestBed.createComponent(RegisterComponent);
-  //   // component = fixture.componentInstance;
-  //   // fixture.detectChanges();
-  // });
 
   it('should be created', () => {
     expect(loginSpy).toBeTruthy();
   });
 
-  // it('should have initial User count of 3', () => {
-  //   registerFixture.detectChanges();
-  //   registerComponent.registerUser();
-  //   console.log(`user count is: ${service.users}`);
-  //   expect(loginSpy.registeringUserValid).toHaveBeenCalled();
+  it('should have initial User count of 3', () => {
+    expect(service.getUsers().length).toEqual(3);
+  });
 
-  //   //expect(service.getUsers().length).toEqual(3);
-  // });
+  it('should return false for formGroup with missing Password', () => {
+    //let email = registerComponent.form.controls['email'];
+    registerComponent.formGroup.controls.email.setValue('test@test.com');
+    registerComponent.formGroup.controls.password.setValue('');
+    registerComponent.formGroup.controls.confirmPassword.setValue('test');
+    registerComponent.formGroup.controls.termsAndCondition.setValue(true);
 
-  // it('should return false for formGroup with missing Password', () => {
-  //   //let email = registerComponent.form.controls['email'];
-  //   registerComponent.formGroup.controls.email.setValue('test@test.com');
-  //   registerComponent.formGroup.controls.password.setValue('');
-  //   registerComponent.formGroup.controls.confirmPassword.setValue('test');
-  //   registerComponent.formGroup.controls.termsAndCondition.setValue(true);
+    //expect(registerComponent.formGroup.valid).toBeFalse();
 
-  //   console.log(`register component is: ${registerComponent.formGroup.valid}`);
+    expect(
+      service.registeringUserValid(registerComponent.formGroup)
+    ).toBeFalsy();
+  });
 
-  //   expect(registerComponent.formGroup.valid).toBeFalse();
+  it('should return true for formGroup', () => {
+    //let email = registerComponent.form.controls['email'];
+    registerComponent.formGroup.controls.email.setValue('test@test.com');
+    registerComponent.formGroup.controls.password.setValue('testing12');
+    registerComponent.formGroup.controls.confirmPassword.setValue('testing12');
+    registerComponent.formGroup.controls.termsAndCondition.setValue(true);
 
-  //   // expect(
-  //   //   service.registeringUserValid(registerComponent.formGroup)
-  //   // ).toBeFalsy();
-  // });
+    expect(registerComponent.formGroup.valid).toBeTruthy();
+  });
 
-  // it('should return false when passed in credentials are not found', () => {
-  //   expect(loginSpy.validateLoginCredential('test', 'test')).toBeTruthy();
-  // });
+  it('should return false when passed in credentials are not found', () => {
+    expect(service.validateLoginCredential('test', 'test')).toBeFalsy();
+  });
+
+  it('should return true when passed in credentials are not found', () => {
+    expect(
+      service.validateLoginCredential('test@test.com', 'Test12')
+    ).toBeTruthy();
+  });
+
+  it('should add a new user', () => {
+    //let email = registerComponent.form.controls['email'];
+    registerComponent.formGroup.controls.email.setValue('test@test.com');
+    registerComponent.formGroup.controls.password.setValue('testing12');
+    registerComponent.formGroup.controls.confirmPassword.setValue('testing12');
+    registerComponent.formGroup.controls.termsAndCondition.setValue(true);
+
+    service.addNewUser(registerComponent.formGroup);
+    expect(service.getUsers().length).toEqual(4);
+  });
 });
